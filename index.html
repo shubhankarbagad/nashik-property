@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+      <script src="script.js"></script>
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nashik Property Entry</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Nashik Bank & Property Data Entry</h1>
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <div class="form-container">
+    <form>
+      <!-- Location -->
+      <fieldset>
+        <legend>Location & Bank Details</legend>
+
+        <label for="area">Nashik City Area:</label>
+        <select id="area" name="area" required>
+          <option value="">-- Select Area --</option>
+          <option value="panchavati">Panchavati</option>
+          <option value="cidco">CIDCO</option>
+          <option value="gangapur">Gangapur Road</option>
+          <option value="indiranagar">Indira Nagar</option>
+          <option value="nashikroad">Nashik Road</option>
+          <option value="satpur">Satpur</option>
+          <option value="ashoknagar">Ashok Nagar</option>
+        </select>
+
+        <label for="bank">Bank Name:</label>
+        <select id="bank" name="bank" onchange="updateBranches()" required>
+          <option value="">-- Select Bank --</option>
+          <option value="sbi">State Bank of India</option>
+          <option value="hdfc">HDFC Bank</option>
+          <option value="icici">ICICI Bank</option>
+          <option value="bob">Bank of Baroda</option>
+          <option value="axis">Axis Bank</option>
+        </select>
+
+        <label for="branch">Branch Name (with Address):</label>
+        <select id="branch" name="branch" required>
+          <option value="">-- Select Branch --</option>
+        </select>
+      </fieldset>
+
+      <!-- Bank Employee -->
+      <fieldset>
+        <legend>Bank Employee Details</legend>
+        <label for="empName">Name:</label>
+        <input type="text" id="empName" required>
+
+        <label for="empGender">Gender:</label>
+        <select id="empGender" required>
+          <option value="">-- Select Gender --</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="empAge">Age:</label>
+        <input type="number" id="empAge" required>
+
+        <label for="empPhone">Phone:</label>
+        <input type="tel" id="empPhone" pattern="[0-9]{10}" required>
+
+        <label for="empEmail">Email:</label>
+        <input type="email" id="empEmail" required>
+
+        <label for="empMarried">Married Status:</label>
+        <select id="empMarried" required>
+          <option value="">-- Select Status --</option>
+          <option value="single">Single</option>
+          <option value="married">Married</option>
+        </select>
+      </fieldset>
+
+      <!-- Party Info -->
+      <fieldset>
+        <legend>Party Details</legend>
+
+        <label for="partyName">Name:</label>
+        <input type="text" id="partyName" required>
+
+        <label for="partyGender">Gender:</label>
+        <select id="partyGender" required>
+          <option value="">-- Select Gender --</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="partyAge">Age:</label>
+        <input type="number" id="partyAge" required>
+
+        <label for="partyPhone">Phone:</label>
+        <input type="tel" id="partyPhone" pattern="[0-9]{10}" required>
+
+        <label for="partyEmail">Email:</label>
+        <input type="email" id="partyEmail" required>
+      </fieldset>
+
+      <!-- Property Info -->
+      <fieldset>
+        <legend>Property & Case Details</legend>
+
+        <label for="propertyType">Type of Property:</label>
+        <select id="propertyType" required>
+          <option value="">-- Select Property Type --</option>
+          <option value="residential">Residential</option>
+          <option value="commercial">Commercial</option>
+          <option value="agricultural">Agricultural</option>
+          <option value="industrial">Industrial</option>
+        </select>
+
+        <label for="caseType">Type of Case:</label>
+        <select id="caseType" required>
+          <option value="">-- Select Case Type --</option>
+          <option value="bt">BT</option>
+          <option value="resale">Resale</option>
+          <option value="bp">BP</option>
+          <option value="mortgage">Mortgage</option>
+          <option value="homeloan">Home Loan</option>
+          <option value="apf">APF</option>
+        </select>
+
+        <label for="fileStatus">File Status:</label>
+        <select id="fileStatus" required>
+          <option value="">-- Select Status --</option>
+          <option value="pending">Pending</option>
+          <option value="inprocess">In Process</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      </fieldset>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    // Dynamic Branch Options
+    const branchData = {
+      sbi: [
+        { value: "mgroad", text: "MG Road - Near Central Mall" },
+        { value: "panchavati", text: "Panchavati - Main Branch" },
+        { value: "satpur", text: "Satpur - MIDC Road" }
+      ],
+      hdfc: [
+        { value: "collegeroad", text: "College Road - Beside Bank of India" },
+        { value: "cidco", text: "CIDCO - Ambad Link Road" },
+        { value: "indiranagar", text: "Indira Nagar - Near Big Bazaar" }
+      ],
+      icici: [
+        { value: "nashikroad", text: "Nashik Road - Bytco Point" },
+        { value: "gangapur", text: "Gangapur Road - Near Cosmos Bank" },
+        { value: "satpur", text: "Satpur - Industrial Estate" }
+      ],
+      bob: [
+        { value: "mumbainaka", text: "Mumbai Naka - Opp. Petrol Pump" },
+        { value: "dwarka", text: "Dwarka - Near Flyover" }
+      ],
+      axis: [
+        { value: "trimbak", text: "Trimbak Road - Below Hotel Rama" },
+        { value: "ashoknagar", text: "Ashok Nagar - Main Market" }
+      ]
+    };
+
+    function updateBranches() {
+      const bank = document.getElementById("bank").value;
+      const branch = document.getElementById("branch");
+      branch.innerHTML = '<option value="">-- Select Branch --</option>';
+      if (branchData[bank]) {
+        branchData[bank].forEach(b => {
+          const opt = document.createElement("option");
+          opt.value = b.value;
+          opt.text = b.text;
+          branch.add(opt);
+        });
+      }
+    }
+
+    // Digital Clock
+    function updateClock() {
+      const now = new Date();
+      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const months = ["January", "February", "March", "April", "May", "June", "July",
+                      "August", "September", "October", "November", "December"];
+      const clock = document.getElementById("clock");
+
+      const day = days[now.getDay()];
+      const date = now.getDate();
+      const month = months[now.getMonth()];
+      const year = now.getFullYear();
+      const time = now.toLocaleTimeString();
+
+      clock.textContent = `${day}, ${date} ${month} ${year} | ${time}`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
+
+  </body>
+</html>
